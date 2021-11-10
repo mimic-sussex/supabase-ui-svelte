@@ -13,7 +13,7 @@
   }).join(';')
 </script>
 
-<button class:block class={size} class:primary style={styleString} on:click disabled={loading}>
+<button title={icon} class:block class={size} class:primary style={styleString} on:click disabled={loading}>
   {#if icon}
     <span class="icon">
       <Icon name={icon} size=21/>
@@ -79,4 +79,10 @@
     justify-content: center;
     width: 100%;
   }
+
+  button:disabled{
+    background: rgb(31, 122, 81);
+    cursor: wait;
+  }
+
 </style>
