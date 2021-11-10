@@ -1,5 +1,5 @@
 <script>
-  import { KeyIcon, MailIcon, InboxIcon } from 'svelte-feather-icons'
+  import { KeyIcon, MailIcon, InboxIcon, LogInIcon } from 'svelte-feather-icons'
   import GoogleIcon from './social-icons/GoogleIcon.svelte'
   import FacebookIcon from './social-icons/FacebookIcon.svelte'
   import TwitterIcon from './social-icons/TwitterIcon.svelte'
@@ -13,6 +13,7 @@
     mail: MailIcon,
     key: KeyIcon,
     inbox: InboxIcon,
+    login: LogInIcon,
     google: GoogleIcon,
     facebook: FacebookIcon,
     twitter: TwitterIcon,
