@@ -9,6 +9,8 @@
   import AzureIcon from './social-icons/AzureIcon.svelte'
   import DiscordIcon from './social-icons/DiscordIcon.svelte'
 
+  import LoadingIcon from './loading-icons/LoadingIcon.svelte'
+
   const map = {
     mail: MailIcon,
     key: KeyIcon,
@@ -22,6 +24,7 @@
     bitbucket: BitbucketIcon,
     azure: AzureIcon,
     discord: DiscordIcon,
+    loading: LoadingIcon
   }
 
   export let name
