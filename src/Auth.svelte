@@ -33,8 +33,8 @@
 
     {#if view == 'sign_in' || view == 'sign_up'}
       <EmailAuthView {supabaseClient} {view} {setView}/>
-    {:else if view == 'magic_link'}
-      <MagicLinkView {supabaseClient} {setView}/>
+    <!-- {:else if view == 'magic_link'}
+      <MagicLinkView {supabaseClient} {setView}/> -->
     {:else if view == 'forgotten_password'}
       <ForgottenPasswordView {supabaseClient} {setView}/>
     {/if}
