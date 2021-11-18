@@ -15,18 +15,28 @@
     message = ''
     loading = true
 
-    if (view == 'sign_up') {
-      const { error: signUpError } = await supabaseClient.auth.signUp({
-        email, password
-      })
+    if (password == '') {
+      error = 'Please enter a password.'
+    }
+    else {
+      if (view == 'sign_up') {
+        const { error: signUpError } = await supabaseClient.auth.signUp({
+          email, password
+        })
 
-      if (signUpError) error = signUpError.message
-    } else if (view == 'sign_in') {
-      const { error: signInError } = await supabaseClient.auth.signIn({
-        email, password
-      })
+        if (signUpError) {
+          error = signUpError.message;
+          console.log(error);
+        } else {
+          message = 'Check your email to confirm your sign up.'
+        }
+      } else if (view == 'sign_in') {
+        const { error: signInError } = await supabaseClient.auth.signIn({
+          email, password
+        })
 
-      if (signInError) error = signInError.message
+        if (signInError) error = signInError.message
+      }
     }
 
     loading = false
@@ -40,13 +50,14 @@
   {#if view == 'sign_up'}
     <Button block primary size="large" {loading} icon="inbox">Sign up</Button>
     <div class="links">
-      <LinkButton on:click={() => setView('magic_link')}>Sign in with email (magic link)</LinkButton>
+      <!-- <LinkButton on:click={() => setView('magic_link')}>Sign in with email (magic link)</LinkButton> -->
       <LinkButton on:click={() => setView('sign_in')}>Do you have an account? Sign in</LinkButton>
     </div>
   {:else}
     <Button block primary size="large" {loading} icon="login">Sign in</Button>
     <div class="links">
       <LinkButton on:click={() => setView('sign_up')}>Don't have an account? Sign up</LinkButton>
+      <!-- <LinkButton on:click={() => setView('forgotten_password')}>Reset password.</LinkButton> -->
     </div>
   {/if}
 
