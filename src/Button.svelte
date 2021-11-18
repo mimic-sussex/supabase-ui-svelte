@@ -19,7 +19,7 @@
       <Icon name={icon} size=21/>
     </span>
   {:else}
-      <Icon name='loading' size=20/>
+      <Icon name='spinner' size=20/>
   {/if}
   
 
