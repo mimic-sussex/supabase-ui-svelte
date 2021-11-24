@@ -3,6 +3,7 @@
 
   export let block = false
   export let primary = false
+  export let secondary = false;
   export let size = 'tiny'
   export let loading = false
   export let icon = null
@@ -13,7 +14,7 @@
   }).join(';')
 </script>
 
-<button title={icon} class:block class={size} class:primary style={styleString} on:click disabled={loading}>
+<button title={icon} class:block class={size} class:primary class:secondary style={styleString} on:click disabled={loading}>
   {#if icon && !loading}
     <span class="icon">
       <Icon name={icon} size=21/>
@@ -50,7 +51,14 @@
   }
 
   button.primary {
-    background: rgba(101, 217, 165);
+    /* background: rgba(101, 217, 165); */
+    background: rgb(18, 162, 97);
+    border-color: transparent;
+    color: white;
+  }
+
+  button.secondary {
+    background: #595858;
     border-color: transparent;
     color: white;
   }
@@ -84,29 +92,14 @@
     width: 100%;
   }
 
-  button:disabled{
-    background: rgb(31, 122, 81);
+  button.primary:disabled{
+    background: rgb(10, 92, 55);
     cursor: wait;
   }
 
-  @keyframes spinner {
-    to {transform: rotate(360deg);}
-  }
-  
-  .spinner:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    margin-left: -10px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    border-top-color: #000;
-    animation: spinner .6s linear infinite;
+  button.secondary:disabled{
+    background: #3d3d3d;
+    cursor: wait;
   }
 
 </style>
