@@ -8,7 +8,7 @@
   export let view
   export let setView
 
-  let error = '', message = '', loading = false, email = '', password = ''
+  let error = '', message = '', loading = false, email = '', password = '', confirm_password = ''
 
   async function submit() {
     error = ''
@@ -20,15 +20,19 @@
     }
     else {
       if (view == 'sign_up') {
-        const { error: signUpError } = await supabaseClient.auth.signUp({
-          email, password
-        })
-
-        if (signUpError) {
-          error = signUpError.message;
-          console.log(error);
+        if (password != confirm_password){
+          error = 'Passwords do not match'
         } else {
-          message = 'Check your email to confirm your sign up.'
+          const { error: signUpError } = await supabaseClient.auth.signUp({
+            email, password
+          })
+
+          if (signUpError) {
+            error = signUpError.message;
+            console.log(error);
+          } else {
+            message = 'Check your email to confirm your sign up.'
+          }
         }
       } else if (view == 'sign_in') {
         const { error: signInError } = await supabaseClient.auth.signIn({
@@ -48,13 +52,16 @@
   <Input name="password" type="password" label="Password" icon="key" bind:value={password}/>
 
   {#if view == 'sign_up'}
+    <!-- Confirm password-->
+    <Input name="password" type="password" label="Confirm Password" icon="key" bind:value={confirm_password}/>
+
     <Button block primary size="large" {loading} icon="inbox">Sign up</Button>
     <div class="links">
       <!-- <LinkButton on:click={() => setView('magic_link')}>Sign in with email (magic link)</LinkButton> -->
       <LinkButton on:click={() => setView('sign_in')}>Do you have an account? Sign in</LinkButton>
     </div>
   {:else}
-    <Button block primary size="large" {loading} icon="login">Sign in</Button>
+    <Button block secondary size="large" {loading} icon="login">Sign in</Button>
     <div class="links">
       <LinkButton on:click={() => setView('sign_up')}>Don't have an account? Sign up</LinkButton>
       <!-- <LinkButton on:click={() => setView('forgotten_password')}>Reset password.</LinkButton> -->
