@@ -64,7 +64,7 @@
     <Button block secondary size="large" {loading} icon="login">Sign in</Button>
     <div class="links">
       <LinkButton on:click={() => setView('sign_up')}>Don't have an account? Sign up</LinkButton>
-      <!-- <LinkButton on:click={() => setView('forgotten_password')}>Reset password.</LinkButton> -->
+      <LinkButton on:click={() => setView('forgotten_password')}>Forgot password?</LinkButton>
     </div>
   {/if}
 
